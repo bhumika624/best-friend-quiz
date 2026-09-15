@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Best Friend Quiz 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffd6e7, #f8d8ff, #d9e8ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        h1 {
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 13px 15px;
+            border: 2px solid #f3b6d2;
+            border-radius: 12px;
+            outline: none;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #d63384;
+        }
+
+        .question {
+            text-align: left;
+            margin: 25px 0;
+            padding: 20px;
+            background: #fff5fa;
+            border-radius: 18px;
+            border: 1px solid #ffd0e3;
+        }
+
+        .question-title {
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #ffe2ef;
+        }
+
+        .option input {
+            margin-right: 8px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 28px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff5c9a, #d63384);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.3);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
+        }
+
+        .score {
+            font-size: 42px;
+            font-weight: bold;
+            color: #d63384;
+            margin: 20px 0;
+        }
+
+        .result {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .correct {
+            color: #198754;
+            background: #e8f8ef;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .wrong {
+            color: #dc3545;
+            background: #fff0f0;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        audio {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .heart {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .score {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- STEP 1 -->
+    <div id="namePage" class="card">
+
+        <div class="heart">💗</div>
+
+        <h1>Best Friend Quiz</h1>
+
+        <h2>Let's See How Well You Know Me 👀</h2>
+
+        <p>Enter your name to start the quiz 🥹</p>
+
+        <input type="text" id="friendName" placeholder="Enter your name">
+
+        <br><br>
+
+        <button onclick="startQuiz()">Enter 💕</button>
+
+    </div>
+
+
+    <!-- STEP 2 -->
+    <div id="quizPage" class="card hidden">
+
+        <div class="heart">🥹💗</div>
+
+        <h1>Kitna Jaante Ho Mujhe?</h1>
+
+        <p id="welcome"></p>
+
+        <div class="question">
+
+            <div class="question-title">
+                1. Mera favorite color kya hai?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q1" value="Blue">
+                Blue
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="Baby Pink">
+                Baby Pink
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="Brown">
+                Brown
+            </label>
+
+        </div>
+
+
+        <div class="question">
+
+            <div class="question-title">
+                2. Mera favourite food kya hai?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q2" value="Chole Bhature">
+                Chole Bhature
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="Dosa">
+                Dosa
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="Pav Bhaji">
+                Pav Bhaji
+            </label>
+
+        </div>
+
+
+        <button onclick="checkAnswers()">Submit 💕</button>
+
+    </div>
+
+
+    <!-- STEP 3 SCORE -->
+    <div id="scorePage" class="card hidden">
+
+        <div class="heart">🎉💗</div>
+
+        <h1>Quiz Completed!</h1>
+
+        <p id="scoreName"></p>
+
+        <div class="score" id="scoreText"></div>
+
+        <p id="scoreMessage"></p>
+
+        <div id="result" class="result"></div>
+
+        <br>
+
+        <button onclick="showAudio1()">Continue 💗</button>
+
+    </div>
+
+
+    <!-- STEP 4 AUDIO 1 -->
+    <div id="audio1Page" class="card hidden">
+
+        <div class="heart">🎧💗</div>
+
+        <h1>Wait... There's Something For You</h1>
+
+        <p>Pehle ye suno... 🥹❤️</p>
+
+        <audio id="audio1" controls>
+            <source src="1.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+
+        <p>
+            Age kuch aane wala hai jo tune dhyan se sunna...
+            unexpected hai 😭💗
+        </p>
+
+        <h2>So, are you ready for a surprise? 🎉</h2>
+
+        <button onclick="showAudio2()">YES 💗</button>
+
+    </div>
+
+
+    <!-- STEP 5 AUDIO 2 -->
+    <div id="audio2Page" class="card hidden">
+
+        <div class="heart">💗🎧💗</div>
+
+        <h1>This One Is For You</h1>
+
+        <p>Ab last surprise... 🎧🥹</p>
+
+        <audio id="audio2" controls>
+            <source src="recor.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+
+        <h2>💗 You're My Favorite Person 💗</h2>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let friendName = "";
+
+    function startQuiz() {
+
+        friendName = document.getElementById("friendName").value;
+
+        if (friendName.trim() === "") {
+
+            alert("Please enter your name 💗");
+            return;
+
+        }
+
+        document.getElementById("namePage").classList.add("hidden");
+
+        document.getElementById("quizPage").classList.remove("hidden");
+
+        document.getElementById("welcome").innerHTML =
+            "Hey " + friendName + " 💕 Let's see how well you know me!";
+
+    }
+
+
+    function checkAnswers() {
+
+        let score = 0;
+
+        let resultHTML = "";
+
+        // CORRECT ANSWERS
+        let correctAnswers = {
+
+            q1: "Baby Pink",
+            q2: "Chole Bhature"
+
+        };
+
+
+        // QUESTION 1
+        let q1 = document.querySelector('input[name="q1"]:checked');
+
+        if (q1) {
+
+            if (q1.value === correctAnswers.q1) {
+
+                score++;
+
+                resultHTML += `
+                    <div class="correct">
+                        ✅ Q1 Correct! You know me well 🥹💗
+                    </div>
+                `;
+
+            } else {
+
+                resultHTML += `
+                    <div class="wrong">
+                        ❌ Q1 Wrong! Correct answer: ${correctAnswers.q1}
+                    </div>
+                `;
+
+            }
+
+        } else {
+
+            resultHTML += `
+                <div class="wrong">
+                    ❌ Q1 Not answered!
+                </div>
+            `;
+
+        }
+
+
+        // QUESTION 2
+        let q2 = document.querySelector('input[name="q2"]:checked');
+
+        if (q2) {
+
+            if (q2.value === correctAnswers.q2) {
+
+                score++;
+
+                resultHTML += `
+                    <div class="correct">
+                        ✅ Q2 Correct! Bestie knows me 😭💗
+                    </div>
+                `;
+
+            } else {
+
+                resultHTML += `
+                    <div class="wrong">
+                        ❌ Q2 Wrong! Correct answer: ${correctAnswers.q2}
+                    </div>
+                `;
+
+            }
+
+        } else {
+
+            resultHTML += `
+                <div class="wrong">
+                    ❌ Q2 Not answered!
+                </div>
+            `;
+
+        }
+
+
+        // SHOW SCORE
+
+        document.getElementById("quizPage").classList.add("hidden");
+
+        document.getElementById("scorePage").classList.remove("hidden");
+
+        document.getElementById("scoreName").innerHTML =
+            "Hey " + friendName + " 💕";
+
+        document.getElementById("scoreText").innerHTML =
+            score + " / 2";
+
+        document.getElementById("result").innerHTML =
+            resultHTML;
+
+
+        // SCORE MESSAGE
+
+        if (score === 2) {
+
+            document.getElementById("scoreMessage").innerHTML =
+                "OMG! You actually know me so well 😭💗";
+
+        } else if (score === 1) {
+
+            document.getElementById("scoreMessage").innerHTML =
+                "Not bad bestie 😂❤️ Thoda aur practice chahiye!";
+
+        } else {
+
+            document.getElementById("scoreMessage").innerHTML =
+                "Excuse me?! 😭 Tum mujhe jaante bhi ho? 😂💔";
+
+        }
+
+    }
+
+
+    function showAudio1() {
+
+        document.getElementById("scorePage").classList.add("hidden");
+
+        document.getElementById("audio1Page").classList.remove("hidden");
+
+    }
+
+
+    function showAudio2() {
+
+        document.getElementById("audio1Page").classList.add("hidden");
+
+        document.getElementById("audio2Page").classList.remove("hidden");
+
+        let audio = document.getElementById("audio2");
+
+        audio.play().catch(function(error) {
+
+            console.log("Audio autoplay blocked. User can press play.");
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
+```
